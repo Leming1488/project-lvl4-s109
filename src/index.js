@@ -1,7 +1,6 @@
 // @flow
 
 import 'babel-polyfill';
-
 import path from 'path';
 import Koa from 'koa';
 import Pug from 'koa-pug';
@@ -14,19 +13,31 @@ import session from 'koa-generic-session';
 import flash from 'koa-flash-simple';
 import _ from 'lodash';
 import methodOverride from 'koa-methodoverride';
+import rollbar from 'rollbar';
 
 import getWebpackConfig from '../webpack.config.babel';
 import addRoutes from './controllers';
 import container from './container';
 
 export default () => {
+  rollbar.init('b2e6698132974eb094b43e6dc34ef8de');
+
   const app = new Koa();
 
   app.keys = ['some secret hurr'];
+  app.use(async (ctx, next) => {
+    try {
+      await next();
+    } catch (err) {
+      rollbar.handleError(err);
+    }
+  });
   app.use(session(app));
   app.use(flash());
   app.use(async (ctx, next) => {
+    /*eslint-disable */
     ctx.state = {
+      /*eslint-enable */
       flash: ctx.flash,
       isSignedIn: () => ctx.session.userId !== undefined,
     };
@@ -35,8 +46,11 @@ export default () => {
   app.use(bodyParser());
   app.use(methodOverride((req) => {
     if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+      /*eslint-disable */
       return req.body._method;
+      /*eslint-enable */
     }
+    return true;
   }));
   app.use(serve(path.join(__dirname, '..', 'public')));
 

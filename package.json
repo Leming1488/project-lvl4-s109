@@ -1,5 +1,5 @@
 {
-  "name": "koa-nodejs-application",
+  "name": "tasks-manager",
   "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
@@ -27,15 +27,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hexlet-boilerplates/nodejs-package.git"
+    "url": "git+https://github.com/Leming1488/tasks-manager.git"
   },
-  "author": "Kirill Mokevnin",
+  "author": "Pavel Kozelskiy",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/hexlet-boilerplates/nodejs-package/issues"
   },
   "homepage": "https://github.com/hexlet-boilerplates/nodejs-package#readme",
   "dependencies": {
+    "autoprefixer": "^7.1.0",
     "babel-cli": "*",
     "babel-core": "*",
     "babel-loader": "*",
@@ -44,12 +45,17 @@
     "babel-preset-env": "*",
     "babel-preset-flow": "*",
     "babel-preset-stage-0": "*",
-    "bootstrap": "4.0.0-alpha.6",
-    "css-loader": "*",
+    "bootstrap": "v4.0.0-alpha.6",
+    "bootstrap-loader": "^2.1.0",
+    "css-loader": "^0.28.1",
     "debug": "*",
     "dotenv": "^4.0.0",
+    "exports-loader": "^0.6.4",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.1",
     "gulp": "*",
     "gulp-util": "*",
+    "imports-loader": "^0.7.1",
     "jquery": "^3.1.1",
     "jquery-ujs": "^1.2.2",
     "koa": "*",
@@ -63,11 +69,19 @@
     "koa-static": "^3.0.0",
     "koa-webpack": "^0.3.1",
     "lodash": "*",
-    "pg": "^6.1.2",
+    "node-sass": "^4.5.2",
+    "pg": "^6.1.5",
+    "postcss": "^6.0.1",
+    "postcss-load-config": "1.0.0",
+    "postcss-loader": "1.2.1",
+    "resolve-url-loader": "^2.0.2",
+    "rollbar": "^0.6.6",
+    "sass-loader": "^6.0.5",
     "sequelize": "*",
     "sqlite3": "*",
-    "style-loader": "*",
+    "style-loader": "^0.17.0",
     "umzug": "^1.11.0",
+    "url-loader": "^0.5.8",
     "webpack": "*"
   },
   "devDependencies": {
