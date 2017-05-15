@@ -17,7 +17,6 @@ install-flow-typed:
 
 build:
 	rm -rf dist
-	npm rebuild node-sass
 	npm run build
 
 test:
