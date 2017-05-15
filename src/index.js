@@ -30,6 +30,7 @@ export default () => {
     try {
       await next();
     } catch (err) {
+      rollbar.reportMessage("Hello world!");
       rollbar.handleError(err);
     }
   });
