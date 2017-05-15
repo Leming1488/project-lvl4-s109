@@ -22,12 +22,17 @@ import container from './container';
 
 export default () => {
   rollbar.init('b2e6698132974eb094b43e6dc34ef8de');
-  rollbar.reportMessage('Hello word');
 
   const app = new Koa();
 
   app.keys = ['some secret hurr'];
-  app.use(rollbar.errorHandler('b2e6698132974eb094b43e6dc34ef8de'));
+  app.use(async (ctx, next) => {
+    try {
+      await next();
+    } catch (err) {
+      rollbar.handleError(err);
+    }
+  });
   app.use(session(app));
   app.use(flash());
   app.use(async (ctx, next) => {

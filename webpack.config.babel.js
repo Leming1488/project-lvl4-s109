@@ -3,7 +3,7 @@ import webpack from 'webpack';
 
 export default () => ({
   entry: {
-    app: ['./client'],
+    app: ['boostrap-loader', './client'],
     vendor: ['babel-polyfill', 'jquery', 'jquery-ujs'],
   },
   output: {
@@ -24,8 +24,12 @@ export default () => ({
         use: 'babel-loader',
       },
       {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+      },
+      {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
     ],
   },
