@@ -29,14 +29,15 @@ export default () => {
     try {
       await next();
     } catch (err) {
-      rollbar.reportMessage("Hello world!");
       rollbar.handleError(err);
     }
   });
   app.use(session(app));
   app.use(flash());
   app.use(async (ctx, next) => {
+    /*eslint-disable */
     ctx.state = {
+      /*eslint-enable */
       flash: ctx.flash,
       isSignedIn: () => ctx.session.userId !== undefined,
     };
@@ -45,8 +46,11 @@ export default () => {
   app.use(bodyParser());
   app.use(methodOverride((req) => {
     if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+      /*eslint-disable */
       return req.body._method;
+      /*eslint-enable */
     }
+    return true;
   }));
   app.use(serve(path.join(__dirname, '..', 'public')));
 
