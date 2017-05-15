@@ -1,5 +1,5 @@
 {
-  "name": "koa-nodejs-application",
+  "name": "tasks-manager",
   "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
@@ -27,9 +27,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hexlet-boilerplates/nodejs-package.git"
+    "url": "git+https://github.com/Leming1488/tasks-manager.git"
   },
-  "author": "Kirill Mokevnin",
+  "author": "Pavel Kozelskiy",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/hexlet-boilerplates/nodejs-package/issues"
