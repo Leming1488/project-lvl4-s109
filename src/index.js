@@ -14,15 +14,20 @@ import session from 'koa-generic-session';
 import flash from 'koa-flash-simple';
 import _ from 'lodash';
 import methodOverride from 'koa-methodoverride';
+import rollbar from 'rollbar';
 
 import getWebpackConfig from '../webpack.config.babel';
 import addRoutes from './controllers';
 import container from './container';
 
 export default () => {
+  rollbar.init('b2e6698132974eb094b43e6dc34ef8de');
+  rollbar.reportMessage('Hello word');
+
   const app = new Koa();
 
   app.keys = ['some secret hurr'];
+  app.use(rollbar.errorHandler('b2e6698132974eb094b43e6dc34ef8de'));
   app.use(session(app));
   app.use(flash());
   app.use(async (ctx, next) => {
