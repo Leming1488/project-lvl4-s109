@@ -20,8 +20,8 @@ export default (router, { User }) => {
       ctx.render('users/edit', { f: buildFormObj(user) });
     })
     .delete('users', '/users', async (ctx) => {
-      const user = await User.findById(this.params)
-      await User.destroy({ where: {id: this.params}, force: true });
+      const { id } = ctx.request.body.form;
+      await User.destroy({ where: { id }, force: true });
       ctx.redirect(router.url('users'));
     })
     .post('users', '/users', async (ctx) => {
