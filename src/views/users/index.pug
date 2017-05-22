@@ -14,7 +14,8 @@ block content
           td= user.email
           td= user.createdAt
           td
-            form(method ='post' action='/users?_method=delete')
+            form(method ='post' action='/users')
+              input(type ='hidden' name='_method' value='DELETE')
               input(type ='hidden' name='id' value= user.id)
               button(type ='submit') delete
             a.nav-link(href=urlFor('editUser', user.id)) edit
