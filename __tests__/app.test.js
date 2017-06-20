@@ -4,26 +4,16 @@ import matchers from 'jest-supertest-matchers';
 import app from '../src';
 
 describe('requests', () => {
-  let server;
+  const server = app().listen();
 
   beforeAll(() => {
     jasmine.addMatchers(matchers);
   });
 
-  beforeEach(() => {
-    server = app().listen();
-  });
-
-  it('GET 200', async () => {
+  it('GET /', async () => {
     const res = await request.agent(server)
-            .get('/');
+      .get('/');
     expect(res).toHaveHTTPStatus(200);
-  });
-
-  it('GET 404', async () => {
-    const res = await request.agent(server)
-            .get('/wrong-path');
-    expect(res).toHaveHTTPStatus(404);
   });
 
   afterEach((done) => {
